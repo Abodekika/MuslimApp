@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">انا مسلم</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="btn_play">تشغيل /ايقاف</string>
+    <string name="btn_stop">ايقاف موقت</string>
+
+    <string name="notifications">Notifications</string>
+    <string name="menu_sunrise">خط البحر </string>
+    <string name="wait">برجاء الانتظار.......</string>
+
+</resources>

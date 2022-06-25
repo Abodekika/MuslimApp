@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    >
+
+
+    <group>
+
+
+        <item
+            android:id="@+id/ak"
+            android:icon="@drawable/ic_format_list"
+            android:padding="20dp"
+            android:title="نسخ"
+            app:showAsAction="never"
+
+
+            />
+        <item
+            android:id="@+id/ak1"
+            android:icon="@drawable/ic_format_list"
+            android:padding="20dp"
+            android:title="مشاركة"
+            app:showAsAction="never"
+
+            />
+        <item
+            android:id="@+id/ak2"
+            android:icon="@drawable/ic_format_list"
+            android:padding="20dp"
+            android:title="اضافة الي المفضلة"
+            app:showAsAction="never"
+
+
+            />
+
+    </group>
+
+</menu>

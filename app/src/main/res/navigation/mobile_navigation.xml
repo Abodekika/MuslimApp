@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/dashbordFragment">
+
+    <fragment
+        android:id="@+id/quranFragment"
+        android:name="com.example.azkar.ui.quran.quranContainer.QuranContainerFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_quran_page">
+        <argument
+            android:name="startPage"
+            app:argType="integer"
+
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/prayerTimeFragment"
+        android:name="com.example.azkar.ui.PrayerTime.PrayerTimeFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_prayer_time" />
+
+    <fragment
+        android:id="@+id/azkarFragment"
+        android:name="com.example.azkar.ui.azkar.AllAzkar.AllAzkarFragment"
+        android:label="@string/azkarFragment"
+        tools:layout="@layout/fragment_allazkar">
+
+        <action
+            android:id="@+id/action_azkarFragment_to_azkarDetailsFragment2"
+            app:destination="@id/azkarDetailsFragment" />
+        <action
+            android:id="@+id/action_azkarFragment_to_favoriteAzkarFragment"
+            app:destination="@id/favoriteAzkarFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/soraListFragment"
+        android:name="com.example.azkar.ui.quran.soralist.SoraListFragment"
+        android:label="fragment_sora_list"
+        tools:layout="@layout/fragment_sora_list">
+
+        <action
+            android:id="@+id/action_soraListFragment_to_quranFragment"
+            app:destination="@+id/quranFragment"
+
+            />
+        <action
+            android:id="@+id/action_soraListFragment_to_quranFragment2"
+            app:destination="@id/quranFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/dashbordFragment"
+        android:name="com.example.azkar.ui.splashscreen.Dashboard.DashboardFragment"
+        android:label="fragment_dashbord"
+        tools:layout="@layout/fragment_dashbord">
+
+        <action
+            android:id="@+id/action_dashbordFragment_to_soraListFragment2"
+            app:destination="@id/soraListFragment" />
+
+             <action
+            android:id="@+id/action_dashbordFragment_to_azkarFragment"
+            app:destination="@id/azkarFragment" />
+
+        <action
+            android:id="@+id/action_dashbordFragment_to_prayerTimeFragment"
+            app:destination="@id/prayerTimeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/azkarDetailsFragment"
+        android:name="com.example.azkar.ui.azkar.AzkarDetails.AzkarDetailsFragment"
+        android:label="fragment_azkar_details"
+        tools:layout="@layout/fragment_azkar_details">
+        <argument
+            android:name="AzkarContent"
+            app:argType="string" />
+        <argument
+            android:name="AzkarName"
+            app:argType="string" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteAzkarFragment"
+        android:name="com.example.azkar.ui.azkar.favoriteAzkar.FavoriteAzkarFragment"
+        android:label="fragment_favorite_azkar"
+        tools:layout="@layout/fragment_favorite_azkar" />
+
+
+</navigation>
