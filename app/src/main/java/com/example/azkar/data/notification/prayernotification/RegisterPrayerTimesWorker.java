@@ -29,6 +29,8 @@ public class RegisterPrayerTimesWorker extends Worker {
 
     private SimpleDateFormat format;
     PrayersPreferences preferences;
+    AzanNotification azanNotification;
+    OneTimeWorkRequest registerPrayerRequest;
 
     public RegisterPrayerTimesWorker(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
@@ -45,6 +47,7 @@ public class RegisterPrayerTimesWorker extends Worker {
 
 
         format = new SimpleDateFormat("hh:mm a", Locale.getDefault());
+
 
         String tag_fajer = "الفجر ت ";
         WorkManager.getInstance(getApplicationContext())
@@ -77,6 +80,7 @@ public class RegisterPrayerTimesWorker extends Worker {
                         ExistingWorkPolicy.REPLACE,
                         registerPrayerRequest("dddd", "صلاة العشاء", "حي علس الصلاة", 5));
 
+
         return Result.success();
     }
 
@@ -92,7 +96,7 @@ public class RegisterPrayerTimesWorker extends Worker {
         SimpleDateFormat format = new SimpleDateFormat(pattern, Locale.getDefault());
 
         try {
-
+            long tim;
             Date date = format.parse(prayerDate);
             long currentTime = System.currentTimeMillis();
             Log.d("TAG", "calculatePrayerDelay: " + date.toString());
@@ -100,10 +104,11 @@ public class RegisterPrayerTimesWorker extends Worker {
 
             Log.d("TAG", "calculatePrayerDelay: diff11 = " + (date.getTime() - currentTime) + " " + Math.abs(date.getTime() - currentTime));
 
-           // (date.getTime() - currentTime);
+            tim = (date.getTime() - currentTime);
             // Math.abs(date.getTime() - currentTime);
 
-            return (date.getTime() - currentTime);
+
+                return (date.getTime() - currentTime);
         } catch (ParseException e) {
             e.printStackTrace();
             return -1;
@@ -134,7 +139,8 @@ public class RegisterPrayerTimesWorker extends Worker {
                 PrayerTimes.getDefaultMazhab(country),
                 PrayerTimes.getDefaultWay(country)).get();
 
-        OneTimeWorkRequest registerPrayerRequest =
+
+        registerPrayerRequest =
                 new OneTimeWorkRequest
                         .Builder(AzanNotification.class)
                         .addTag(tag)//calculatePrayerDelay(2022,month,day,prayers[D])

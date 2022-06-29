@@ -1,5 +1,6 @@
 package com.example.azkar.ui.azkar.favoriteAzkar;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -7,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import androidx.lifecycle.ViewModel;
 
 
+import com.example.azkar.data.Pojo.azkar.Azker;
 import com.example.azkar.data.Pojo.azkar.Content;
 import com.example.azkar.data.Pojo.azkar.FavItem;
 import com.example.azkar.data.database.azkardatabase.AzkarDataBase;
@@ -22,8 +24,8 @@ public class FavoriteAzkarViewModel extends ViewModel {
 
     private AzkarDataBase azkarDataBase;
 
-    public List<FavItem> loadData(Context context) {
-        List<FavItem> fav_azkar_list = new ArrayList<>();
+    public List<Azker> loadData(Context context) {
+        List<Azker> fav_azkar_list = new ArrayList<>();
         azkarDataBase = new AzkarDataBase(context);
 
         if (fav_azkar_list != null) {
@@ -35,17 +37,17 @@ public class FavoriteAzkarViewModel extends ViewModel {
 
         try {
             while (cursor.moveToNext()) {
-                String id = cursor.getString(cursor.getColumnIndex("id"));
-                String title = cursor.getString(cursor.getColumnIndex("title"));
-                String count = cursor.getString(cursor.getColumnIndex("count"));
-                String bookmark = cursor.getString(cursor.getColumnIndex("bookmark"));
-                byte[] blob = cursor.getBlob(cursor.getColumnIndex("content"));
+                @SuppressLint("Range") String id = cursor.getString(cursor.getColumnIndex("id"));
+                @SuppressLint("Range") String title = cursor.getString(cursor.getColumnIndex("title"));
+                @SuppressLint("Range") String count = cursor.getString(cursor.getColumnIndex("count"));
+                @SuppressLint("Range") String bookmark = cursor.getString(cursor.getColumnIndex("bookmark"));
+                @SuppressLint("Range") byte[] blob = cursor.getBlob(cursor.getColumnIndex("content"));
                 String json = new String(blob);
                 Gson gson = new Gson();
                 List<Content> content = gson.fromJson(json, new TypeToken<List<Content>>() {
                 }.getType());
 
-                FavItem favItem = new FavItem(id, title, count, bookmark, content);
+                Azker favItem = new Azker(id, title, count, bookmark, content);
 
                 fav_azkar_list.add(favItem);
 

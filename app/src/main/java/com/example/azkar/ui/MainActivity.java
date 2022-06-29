@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         //  NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        register();
+       // register();
     }
 
     @Override
@@ -110,7 +110,8 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
 
-        WorkManager.getInstance(getApplicationContext()).
-                enqueueUniquePeriodicWork("Res", ExistingPeriodicWorkPolicy.REPLACE, periodicWorkRequest);
+        WorkManager.getInstance(this).
+                enqueueUniquePeriodicWork("Res",
+                        ExistingPeriodicWorkPolicy.REPLACE, periodicWorkRequest);
     }
 }

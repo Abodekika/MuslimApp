@@ -7,6 +7,7 @@ import android.content.Context;
 import android.media.AudioAttributes;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
@@ -19,10 +20,13 @@ import com.example.azkar.R;
 public class AzanNotification extends Worker {
     public static final String CHANNEL_ID = "AZAN_CHANNEL";
     public static final String CHANNEL_NAme = "azan_CHANNEL";
+    Context context;
 
     public AzanNotification(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
     }
+
+
 
     public NotificationCompat.Builder createNotificationBuilder
             (String title, String content, Uri sound) {

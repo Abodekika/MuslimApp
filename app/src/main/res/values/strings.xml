@@ -23,6 +23,8 @@
     <string name="azkarFragment">AzkarFragment</string>
     <string name="wait">please Waiting.......</string>
 
+    <string name="fav_toolbar_title">Favorite Azkar</string>
+
     <string-array name="font_style">
         <item> خط واحد </item>
         <item> خط اتنين </item>

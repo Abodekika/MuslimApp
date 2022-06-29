@@ -128,20 +128,23 @@ public class AllAzkarAdapter extends RecyclerView.Adapter<AllAzkarAdapter.ViewHo
 
         holder.tvTitle.setOnClickListener(v -> {
 
-            List<Content> content = azker_list.get(position).getContent();
-            String azkarName = azker_list.get(position).getTitle();
+            //  List<Content> content = azker_list.get(position).getContent();
+            Azker azkera = azker_list.get(position);
 
-            Bundle bundle = new Bundle();
 
-            bundle.putSerializable("ahmed", (Serializable) content);
+            //    Bundle bundle = new Bundle();
+
+            //    bundle.putSerializable("ahmed", (Serializable) content);
 
 
             Gson gson = new Gson();
 
-            String file = gson.toJson(content);
+
+            String azkar_json = gson.toJson(azkera);
+
 
             NavHostFragment.findNavController(fragment).navigate(com.example.azkar.ui.azkar.AllAzkar.AllAzkarFragmentDirections.
-                    actionAzkarFragmentToAzkarDetailsFragment2(file,azkarName ));
+                    actionAzkarFragmentToAzkarDetailsFragment2(azkar_json));
 
 
 //

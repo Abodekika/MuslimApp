@@ -1,5 +1,6 @@
 package com.example.azkar.ui.azkar.favoriteAzkar;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -28,6 +29,7 @@ public class FavoriteAzkarFragment extends Fragment {
     private FragmentFavoriteAzkarBinding binding;
     FavoriteAdapter favAdapter;
     RecyclerView fav_rec;
+    Toolbar toolbar;
 
 
     public static FavoriteAzkarFragment newInstance() {
@@ -44,6 +46,7 @@ public class FavoriteAzkarFragment extends Fragment {
         View root = binding.getRoot();
 
         fav_rec = binding.favRec;
+        toolbar = binding.toolbar;
         fav_rec.setLayoutManager(new LinearLayoutManager(getContext()));
         return root;
     }
@@ -52,10 +55,10 @@ public class FavoriteAzkarFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        favAdapter = new FavoriteAdapter(getContext(), favoriteAzkarViewModel.loadData(getContext()));
+        favAdapter = new FavoriteAdapter(getContext(), favoriteAzkarViewModel.loadData(getContext()), this);
 
         fav_rec.setAdapter(favAdapter);
-
+        toolbar.setTitle(R.string.fav_toolbar_title);
         favAdapter.notifyDataSetChanged();
     }
 }

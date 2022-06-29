@@ -2,7 +2,7 @@ package com.example.azkar.ui.azkar.favoriteAzkar;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,13 +10,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.azkar.R;
 
+import com.example.azkar.data.Pojo.azkar.Azker;
 import com.example.azkar.data.Pojo.azkar.Content;
 import com.example.azkar.data.Pojo.azkar.FavItem;
 import com.example.azkar.data.database.azkardatabase.AzkarDataBase;
+import com.google.gson.Gson;
 
 
 import java.io.Serializable;
@@ -25,13 +29,15 @@ import java.util.List;
 public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHolder> {
 
     private Context context;
-    public List<FavItem> fav_azkar_list;
+    public List<Azker> fav_azkar_list;
 
     private AzkarDataBase azkarDataBase;
+    Fragment fragment;
 
-    public FavoriteAdapter(Context context, List<FavItem> fav_azkar_list) {
+    public FavoriteAdapter(Context context, List<Azker> fav_azkar_list, Fragment fragment) {
         this.context = context;
         this.fav_azkar_list = fav_azkar_list;
+        this.fragment = fragment;
     }
 
 
@@ -50,6 +56,21 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
         holder.tvTitle.setText(fav_azkar_list.get(position).getTitle());
 
         holder.tvTitle.setOnClickListener(v -> {
+
+
+            Azker fav_azkar = fav_azkar_list.get(position);
+            //  Bundle bundle = new Bundle();
+
+            //  bundle.putSerializable("ahmed", (Serializable) content);
+
+
+            Gson gson = new Gson();
+
+            String azkar_jason = gson.toJson(fav_azkar);
+            NavHostFragment.findNavController(fragment).
+                    navigate(FavoriteAzkarFragmentDirections.
+                            actionFavoriteAzkarFragmentToAzkarDetailsFragment
+                                    (azkar_jason));
 /*
 
             Intent intent = new Intent(context, Datails.class);
@@ -100,7 +121,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
 
             fave_ic.setOnClickListener(v -> {
                 int position = getAdapterPosition();
-                final FavItem favItem = fav_azkar_list.get(position);
+                final Azker favItem = fav_azkar_list.get(position);
                 azkarDataBase.deleteFromD(favItem.getId());
                 removeItem(position);
 

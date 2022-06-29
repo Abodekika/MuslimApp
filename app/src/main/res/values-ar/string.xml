@@ -12,5 +12,6 @@
     <string name="notifications">Notifications</string>
     <string name="menu_sunrise">خط البحر </string>
     <string name="wait">برجاء الانتظار.......</string>
+    <string name="fav_toolbar_title">الاذكار المفضلة</string>
 
 </resources>

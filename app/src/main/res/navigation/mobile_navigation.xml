@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
@@ -66,7 +65,7 @@
             android:id="@+id/action_dashbordFragment_to_soraListFragment2"
             app:destination="@id/soraListFragment" />
 
-             <action
+        <action
             android:id="@+id/action_dashbordFragment_to_azkarFragment"
             app:destination="@id/azkarFragment" />
 
@@ -79,19 +78,22 @@
         android:name="com.example.azkar.ui.azkar.AzkarDetails.AzkarDetailsFragment"
         android:label="fragment_azkar_details"
         tools:layout="@layout/fragment_azkar_details">
+
         <argument
-            android:name="AzkarContent"
+            android:name="azkar"
             app:argType="string" />
-        <argument
-            android:name="AzkarName"
-            app:argType="string" />
+
 
     </fragment>
     <fragment
         android:id="@+id/favoriteAzkarFragment"
         android:name="com.example.azkar.ui.azkar.favoriteAzkar.FavoriteAzkarFragment"
         android:label="fragment_favorite_azkar"
-        tools:layout="@layout/fragment_favorite_azkar" />
+        tools:layout="@layout/fragment_favorite_azkar">
+        <action
+            android:id="@+id/action_favoriteAzkarFragment_to_azkarDetailsFragment"
+            app:destination="@id/azkarDetailsFragment" />
+    </fragment>
 
 
 </navigation>
